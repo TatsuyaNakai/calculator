@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 
+type NumOrStr = string | number;
+
 export const App: React.FC = () => {
-  const [num, setNum] = useState('0');
-  const [add, setAdd] = useState('0');
+  const [num, setNum] = useState<NumOrStr>('0');
+  const [add, setAdd] = useState<NumOrStr>('0');
   const [calc, setCalc] = useState('Calculator');
   const [bool, setBool] = useState(true);
 
@@ -23,21 +25,21 @@ export const App: React.FC = () => {
     }
     return;
   }
-  const equal = (add: string, calc: string, num: string) => {
+  const equal = (add: NumOrStr, calc: string, num: NumOrStr) => {
     const addNum = Number(add);
     const newNum = Number(num);
     switch (calc) {
       case 'plus':
-        setNum(String(newNum + addNum));
+        setNum(newNum + addNum);
         break;
       case 'minus':
-        setNum(String(newNum - addNum));
+        setNum(newNum - addNum);
         break;
       case 'multiply':
-        setNum(String(newNum * addNum));
+        setNum(newNum * addNum);
         break;
       case 'devide':
-        setNum(String(newNum / addNum));
+        setNum(newNum / addNum);
         break;
       default: setNum('');
     }
@@ -54,15 +56,15 @@ export const App: React.FC = () => {
     setBool(false);
   }
 
-  const reverse = (num: string) => {
+  const reverse = (num: NumOrStr) => {
     const typeOfNum = Number(num);
-    const str = String(-typeOfNum);
+    const str = -typeOfNum;
     setNum(str);
   }
 
-  const percentage = (num: string) => {
+  const percentage = (num: NumOrStr) => {
     const typeOfNum = Number(num);
-    const str = String(typeOfNum / 100);
+    const str = typeOfNum / 100;
     setNum(str);
   }
 
